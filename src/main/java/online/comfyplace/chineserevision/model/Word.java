@@ -22,4 +22,9 @@ public class Word {
     public String getSimplified() {
         return simplified;
     }
+
+    @Override
+    public String toString() {
+        return String.format("English: %s, Pinyin: %s, Simplified: %s", getEnglish(), getPinyin(), getSimplified());
+    }
 }
