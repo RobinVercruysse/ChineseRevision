@@ -17,7 +17,7 @@ public class DictionaryReader implements Closeable {
         this.reader = new BufferedReader(new InputStreamReader(inputStream));
     }
 
-    public List<Word> read() {
+    public List<Word> readAll() {
         return reader.lines().map(this::parseLineToWord).collect(Collectors.toList());
     }
 
