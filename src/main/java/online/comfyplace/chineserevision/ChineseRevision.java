@@ -3,20 +3,18 @@ package online.comfyplace.chineserevision;
 import online.comfyplace.chineserevision.io.DictionaryReader;
 import online.comfyplace.chineserevision.model.Word;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class ChineseRevision {
     public static void main(String[] args) throws IOException {
+        System.out.println("Loading dictionary...");
         final List<Word> dictionary;
-        try (final DictionaryReader reader = new DictionaryReader("words.properties")) {
+        try (final DictionaryReader reader = new DictionaryReader("words.csv")) {
             dictionary = reader.readAll();
         }
+        System.out.println(String.format("Finished loading dictionary of %d words", dictionary.size()));
         Scanner scanner = new Scanner(System.in);
         System.out.println("1. English -> Pinyin");
         System.out.println("2. Pinyin -> English");

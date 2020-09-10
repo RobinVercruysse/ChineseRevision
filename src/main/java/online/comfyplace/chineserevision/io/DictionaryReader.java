@@ -22,9 +22,8 @@ public class DictionaryReader implements Closeable {
     }
 
     private Word parseLineToWord(final String line) {
-        final String[] keyValue = line.split("=");
-        final String[] valueParts = keyValue[1].split(",");
-        return new Word(keyValue[0], valueParts[0], valueParts[1]);
+        final String[] parts = line.split(",");
+        return new Word(parts[0], parts[1], parts[2]);
     }
 
     @Override
