@@ -1,14 +1,7 @@
 package online.comfyplace.chineserevision;
 
-import online.comfyplace.chineserevision.io.DictionaryReader;
-import online.comfyplace.chineserevision.model.Word;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class ChineseRevision {
