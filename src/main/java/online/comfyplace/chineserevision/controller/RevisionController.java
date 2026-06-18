@@ -15,7 +15,7 @@ public class RevisionController {
     @GetMapping("/")
     public String home(Model model) {
         Word word = wordsRepository.getRandomWord();
-        model.addAttribute("message", word.traditionalCharacter());
+        model.addAttribute("word", word);
 
         return "home";
     }
