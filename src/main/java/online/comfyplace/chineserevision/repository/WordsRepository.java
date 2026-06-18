@@ -18,4 +18,8 @@ public class WordsRepository {
 
         return words.get(index);
     }
+
+    public List<Word> allWords() {
+        return words;
+    }
 }
