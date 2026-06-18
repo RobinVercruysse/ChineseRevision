@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Configuration
 public class ApplicationConfiguration {
@@ -22,11 +25,29 @@ public class ApplicationConfiguration {
                 .map(ApplicationConfiguration::parseWordLine)
                 .toList();
 
+        validateUniqueness(words, Word::traditionalCharacter);
+        validateUniqueness(words, Word::english);
+
         return new WordsRepository(words);
     }
 
     private static Word parseWordLine(String line) {
         final String[] parts = line.split(",");
         return new Word(parts[0], parts[1], parts[2]);
+    }
+
+    private static void validateUniqueness(final List<Word> dictionary, Function<? super Word, String> groupingFunction) {
+        dictionary.stream()
+                .collect(Collectors.groupingBy(groupingFunction))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue().size() > 1)
+                .forEach(ApplicationConfiguration::reportDuplicate);
+    }
+
+    private static void reportDuplicate(final Map.Entry<String, List<Word>> entry) {
+        System.err.println("Duplicate found:");
+        for (Word word : entry.getValue()) {
+            System.err.println("-> " + word.toString());
+        }
     }
 }
