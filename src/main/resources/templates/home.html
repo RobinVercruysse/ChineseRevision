@@ -3,10 +3,31 @@
     <head>
         <title>Chinese Revision</title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/home.css}" href="../static/css/home.css">
     </head>
     <body>
-        <span th:text="${word.traditionalCharacter}"></span>
-        <span th:text="${word.pinyin}"></span>
-        <span th:text="${word.english}"></span>
+        <button class="flashcard" type="button" aria-pressed="false">
+            <div class="flashcard__front" th:text="${word.traditionalCharacter}"></div>
+            <div class="flashcard__back" hidden>
+                <div th:text="${word.traditionalCharacter}"></div>
+                <div th:text="${word.pinyin}"></div>
+                <div th:text="${word.english}"></div>
+            </div>
+        </button>
+        <script>
+            const flashcard = document.querySelector('.flashcard');
+            const front = document.querySelector('.flashcard__front');
+            const back = document.querySelector('.flashcard__back');
+
+            let isFlipped = false;
+
+            flashcard.addEventListener('click', () => {
+                isFlipped = !isFlipped;
+                front.hidden = isFlipped;
+                back.hidden = !isFlipped;
+                flashcard.setAttribute('aria-pressed', String(isFlipped));
+            });
+        </script>
     </body>
 </html>

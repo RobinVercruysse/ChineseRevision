@@ -1,0 +1,12 @@
+body {
+    display: grid;
+    min-height: 100vh;
+    margin: 0;
+    place-items: center;
+}
+
+.flashcard {
+    width: 300px;
+    min-height: 200px;
+    cursor: pointer;
+}
