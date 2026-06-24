@@ -5,29 +5,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" th:href="@{/css/home.css}" href="../static/css/home.css">
+        <script th:src="@{/js/jquery-4.0.0.min.js}" src="../static/js/jquery-4.0.0.min.js" type="text/javascript"></script>
+        <script>
+            function flipCard() {
+                const flashcard = $('.flashcard');
+                flashcard.toggleClass('flipped');
+            }
+        </script>
     </head>
     <body>
-        <div class="flashcard">
-            <div class="flashcard__front" th:text="${word.traditionalCharacter}"></div>
-            <div class="flashcard__back" hidden>
+        <div class="flashcard" onclick="flipCard()">
+            <div class="flashcard-front" th:text="${word.traditionalCharacter}"></div>
+            <div class="flashcard-back">
                 <div th:text="${word.traditionalCharacter}"></div>
                 <div th:text="${word.pinyin}"></div>
                 <div th:text="${word.english}"></div>
             </div>
         </div>
-        <script>
-            const flashcard = document.querySelector('.flashcard');
-            const front = document.querySelector('.flashcard__front');
-            const back = document.querySelector('.flashcard__back');
-
-            let isFlipped = false;
-
-            flashcard.addEventListener('click', () => {
-                isFlipped = !isFlipped;
-                front.hidden = isFlipped;
-                back.hidden = !isFlipped;
-                flashcard.setAttribute('aria-pressed', String(isFlipped));
-            });
-        </script>
     </body>
 </html>
