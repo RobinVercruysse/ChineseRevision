@@ -7,14 +7,14 @@
         <link rel="stylesheet" th:href="@{/css/home.css}" href="../static/css/home.css">
     </head>
     <body>
-        <button class="flashcard" type="button" aria-pressed="false">
+        <div class="flashcard">
             <div class="flashcard__front" th:text="${word.traditionalCharacter}"></div>
             <div class="flashcard__back" hidden>
                 <div th:text="${word.traditionalCharacter}"></div>
                 <div th:text="${word.pinyin}"></div>
                 <div th:text="${word.english}"></div>
             </div>
-        </button>
+        </div>
         <script>
             const flashcard = document.querySelector('.flashcard');
             const front = document.querySelector('.flashcard__front');
